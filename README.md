@@ -70,7 +70,7 @@ in the `bower_components` directory.
 
 In your webpage, add the following codes in the `<head>..</head>` part:
 
-    <script type="text/javascript" src="bower_components/domready/ready.js"></script>
+    <script type="text/javascript" src="bower_components/domready/ready.min.js"></script>
     <script type="text/javascript" src="bower_components/xregexp/min/xregexp-all-min.js"></script>
     <script type="text/javascript" src="bower_components/fix-cjk-linebreak/fix-cjk-linebreak.js"></script>
     <script type="text/javascript">
