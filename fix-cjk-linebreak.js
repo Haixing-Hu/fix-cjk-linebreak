@@ -37,7 +37,3 @@ function fix_cjk_linebreak(el) {
         p.innerHTML = XRegExp.replace(p.innerHTML, cjk_linebreak_pattern, "$1$2");
     }
 }
-
-domready(function() {
-    fix_cjk_linebreak(document.getElementsByTagName("body")[0]);
-});

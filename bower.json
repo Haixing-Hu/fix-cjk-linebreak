@@ -1,7 +1,7 @@
 {
   "name": "fix-cjk-linebreak.js",
   "main": "fix-cjk-linebreak.js",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "authors": [
     "Haixing Hu <starfish.hu@gmail.com>"
   ],

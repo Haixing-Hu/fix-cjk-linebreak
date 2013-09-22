@@ -6,8 +6,17 @@
     <script type="text/javascript" src="../bower_components/domready/ready.js"></script>
     <script type="text/javascript" src="../bower_components/xregexp/min/xregexp-all-min.js"></script>
     <script type="text/javascript" src="../fix-cjk-linebreak.js"></script>
+    <script type="text/javascript">
+    domready(function() {
+       fix_cjk_linebreak(document.getElementsByTagName("body")[0]);
+    });
+    </script>
   </head>
   <body>
+    <p>The following is some test cases. If the tow line in each test case have
+      the same length, it pass the test.</p>
+    <p>下面是测试样例。如果每个样例的两行长度都相同，则其通过了测试。</p>
+
     <hr/>
     <p>1. 测试样例：这是源码中的第一行，以中文字符结束
        这是源码中的第二行，以中文字符开头</p>
