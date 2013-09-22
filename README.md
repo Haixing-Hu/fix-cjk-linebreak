@@ -59,9 +59,9 @@ in the `bower_components` directory.
 ### Build from the Source
 
 1. Checkout the source form the github:
-    git clone https://github.com/Haixing-Hu/fix-cjk-linebreak.js.git
+    `git clone https://github.com/Haixing-Hu/fix-cjk-linebreak.js.git`
 2. Download the dependened packages using [Bower](http://bower.io/):
-    bower install
+    `bower install`
 3. Check the test page under the `test` directory.
 4. Copys the scripts to some directory of your site, and include all the
    scripts in your HTML pages.
