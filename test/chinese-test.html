@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8"/>
+    <title>测试HTML中简体中文换行导致的额外空格</title>
+    <script type="text/javascript" src="../bower_components/domready/ready.js"></script>
+    <script type="text/javascript" src="../bower_components/xregexp/min/xregexp-all-min.js"></script>
+    <script type="text/javascript" src="../fix-cjk-linebreak.js"></script>
+  </head>
+  <body>
+    <hr/>
+    <p>1. 测试样例：这是源码中的第一行，以中文字符结束
+       这是源码中的第二行，以中文字符开头</p>
+    <p>1. 正确结果：这是源码中的第一行，以中文字符结束这是源码中的第二行，以中文字符开头</p>
+    <hr/>
+    <p>2. 测试样例：这是源码中的第一行，以中文标点结束。
+       这是源码中的第二行，以中文字符开头。</p>
+    <p>2. 正确结果：这是源码中的第一行，以中文标点结束。这是源码中的第二行，以中文字符开头。</p>
+    <hr/>
+    <p>3. 测试样例：这是源码中的第一行，以英文标点结束.
+       这是源码中的第二行，以中文字符开头。</p>
+    <p>3. 正确结果：这是源码中的第一行，以英文标点结束. 这是源码中的第二行，以中文字符开头。</p>
+    <hr/>
+    <p>4. 测试样例：这是源码中的第一行，以中文字符结束
+       and 这是源码中的第二行，以英文字符开头。</p>
+    <p>4. 正确结果：这是源码中的第一行，以中文字符结束 and 这是源码中的第二行，以英文字符开头。</p>
+    <hr/>
+    <p>5. 测试样例：这是源码中的第一行，以英文字符结束 end
+      这是源码中的第二行，以中文字符开头。</p>
+    <p>5. 正确结果：这是源码中的第一行，以英文字符结束 end 这是源码中的第二行，以中文字符开头。</p>
+    <hr/>
+    <p>6. 测试样例：这是源码中的第一行，以英文字符结束 end
+      begin 这是源码中的第二行，以英文字符开头。</p>
+    <p>6. 正确结果：这是源码中的第一行，以英文字符结束 end begin 这是源码中的第二行，以英文字符开头。</p>
+    <hr/>
+  </body>
+</html>
