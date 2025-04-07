@@ -12,7 +12,11 @@
     "dev": "rollup -c -w",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "npm run build",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "deploy": "npm run build && npm publish",
+    "deploy:patch": "npm version patch && npm run deploy",
+    "deploy:minor": "npm version minor && npm run deploy",
+    "deploy:major": "npm version major && npm run deploy"
   },
   "repository": {
     "type": "git",
