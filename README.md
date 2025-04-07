@@ -1,103 +1,113 @@
-fix-cjk-linebreak
-====================
+# fix-cjk-linebreak
 
-This is a simple javascript used to fix the extra space between CJK symbols and
-punctuations introduced by the line break in the souce file of a HTML page.
+修复 HTML 源文件中由于换行导致的中日韩 (CJK) 符号和标点之间的多余空格。
 
-## The Problem
+## 问题
 
-The HTML specification does not talking about how to render the line break in
-the HTML source file. It simplely treat it as a single space. For the western
-languages, this treatment is O.K., since there should be a space between each
-word. But for the CJK languages, usually there is no space between two CJK
-symbols or punctuations. Therefore, the line break in the source file of an
-HTML page will lead to undesired extra space.
+HTML 规范没有明确说明如何渲染源文件中的换行符，它只是简单地将其视为一个空格。对于西方语言来说，这种处理方式是可以的，因为每个单词之间应该有一个空格。但对于中日韩语言，通常两个 CJK 符号或标点之间没有空格。因此，HTML 页面源文件中的换行符会导致不必要的额外空格。
 
-For example, consider the following HTML source codes:
+例如，考虑以下 HTML 源代码：
 
-    <p>1. 测试样例：这是源码中的第一行，以中文字符结束
-          这是源码中的第二行，以中文字符开头</p>
-    <p>1. 正确结果：这是源码中的第一行，以中文字符结束这是源码中的第二行，以中文字符开头</p>
+```html
+<p>1. 测试样例：这是源码中的第一行，以中文字符结束
+      这是源码中的第二行，以中文字符开头</p>
+<p>1. 正确结果：这是源码中的第一行，以中文字符结束这是源码中的第二行，以中文字符开头</p>
+```
 
-The text in the first `<p>` element will have an undesired extra space between
-two lines in the souce code.
+第一个 `<p>` 元素中的文本会在源代码中的两行间有一个不必要的额外空格。
 
-## The Solution
+## 解决方案
 
-We use a javascript to modify the innel HTML of `<p>` elements, removing all
-the extra spaces introduced by the line breaks.
+我们使用 JavaScript 来修改 `<p>` 元素的内部 HTML，移除由换行符引入的所有额外空格。
 
-## Dependency
+## 依赖
 
-This script depends on the following packages:
+此脚本依赖于以下包（已内置到 UMD 版本中）：
 
 - XRegExp: (http://xregexp.com/)
-- DomReady: (https://github.com/ded/domready)
 
-## Installation
+## 安装
 
-### Manually
+### 使用 npm 安装
 
-You can install the script manually.
+```bash
+npm install fix-cjk-linebreak
+```
 
-1. Downloads this scripts at (https://raw.github.com/Haixing-Hu/fix-cjk-linebreak/master/fix-cjk-linebreak.js).
-2. Downloads the XRegExp script at (https://raw.github.com/slevithan/xregexp/master/build/xregexp-all-min.js)
-3. Downloads the DomReady script at (https://raw.github.com/ded/domready/master/ready.min.js)
-4. Puts the scripts to some directory of your site, and include all those
-   scripts in your HTML pages.
+### 手动安装
 
-### Use Bower
+你也可以手动安装脚本：
 
-You can use the package manager [Bower](http://bower.io/) to install the
-script:
+1. 从以下地址下载脚本: https://unpkg.com/fix-cjk-linebreak
+2. 将脚本放在你站点的某个目录中，并在 HTML 页面中引入它。
 
-    bower install fix-cjk-linebreak
+## 使用方法
 
-The script and all the dependened packages will be downloaded and installed
-in the `bower_components` directory.
+### 使用 npm 模块
 
-### Build from the Source
+```javascript
+// ESM
+import fixCJKLinebreak from 'fix-cjk-linebreak';
 
-1. Checkout the source form the github:
-    `git clone https://github.com/Haixing-Hu/fix-cjk-linebreak.js.git`
-2. Download the dependened packages using [Bower](http://bower.io/):
-    `bower install`
-3. Check the test page under the `test` directory.
-4. Copys the scripts to some directory of your site, and include all the
-   scripts in your HTML pages.
+// 自动修复页面中的所有段落
+fixCJKLinebreak.autoFix();
 
-## Usage
+// 或者手动修复特定元素下的段落
+document.addEventListener('DOMContentLoaded', function() {
+  fixCJKLinebreak.fix(document.getElementById('content'));
+});
 
-In your webpage, add the following codes in the `<head>..</head>` part:
+// 具名导入
+import { fix, autoFix } from 'fix-cjk-linebreak';
 
-    <script type="text/javascript" src="bower_components/domready/ready.min.js"></script>
-    <script type="text/javascript" src="bower_components/xregexp/min/xregexp-all-min.js"></script>
-    <script type="text/javascript" src="bower_components/fix-cjk-linebreak/fix-cjk-linebreak.js"></script>
-    <script type="text/javascript">
-    domready(function() {
-       fix_cjk_linebreak(document.getElementsByTagName("body")[0]);
-    });
-    </script>
+// CommonJS
+const { fix, autoFix } = require('fix-cjk-linebreak');
 
-Note the last script snippet. It calls the `fix_cjk_linebreak` function with
-the DOM element `<body>` of the page, as soon as the page's DOM is ready.  The
-`fix_cjk_linebreak` function has a single parameter, which should be a DOM
-element. The function will fix all the `<p>` elements under the parameter DOM
-element by removing the extra spaces between CJK characters introduced by
-the linebreaks in the source.
+// 使用导入的函数
+autoFix();
+// 或
+document.addEventListener('DOMContentLoaded', function() {
+  fix(document.getElementById('content'));
+});
+```
 
-Please check the test pages under the `test` directory for the usage example.
+### 直接在 HTML 中使用
 
-**NOTE:** Before you open the test webpages, you should install the dependency
-packages by running the following command in the root directory of the project:
+在你的网页的 `<head>..</head>` 部分添加以下代码：
 
-    bower install
+```html
+<!-- UMD 版本已包含所有依赖 -->
+<script src="https://unpkg.com/fix-cjk-linebreak"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    fixCJKLinebreak.fix(document.body);
+  });
+</script>
+```
 
-## Browser support
+或者使用自动修复功能：
 
-I have test the scripts under the following browsers.
+```html
+<!-- UMD 版本已包含所有依赖 -->
+<script src="https://unpkg.com/fix-cjk-linebreak"></script>
+<script>
+  fixCJKLinebreak.autoFix();
+</script>
+```
 
-- Firefox: 23.0.1
-- Chrome 23.0.1271.97
+`fix` 函数接受一个参数，该参数应该是一个 DOM 元素。该函数将修复参数 DOM 元素下的所有 `<p>` 元素，移除由源代码中的换行符引入的 CJK 字符之间的额外空格。
 
-If anyone test it under other browsers, please let me know. Thanks a lot.
+请查看 `test` 目录下的测试页面以了解使用示例。
+
+## 浏览器支持
+
+该脚本已在以下浏览器中测试：
+
+- Firefox: 23.0.1+
+- Chrome: 23.0.1271.97+
+- Edge: 最新版本
+- Safari: 最新版本
+
+## 许可证
+
+GPL-2.0

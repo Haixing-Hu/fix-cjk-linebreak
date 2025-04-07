@@ -1,0 +1,48 @@
+{
+  "name": "fix-cjk-linebreak",
+  "version": "2.0.0",
+  "description": "修复 HTML 源码中 CJK 字符和标点之间由于换行导致的多余空格",
+  "main": "dist/fix-cjk-linebreak.cjs.js",
+  "module": "dist/fix-cjk-linebreak.esm.js",
+  "browser": "dist/fix-cjk-linebreak.umd.js",
+  "unpkg": "dist/fix-cjk-linebreak.umd.min.js",
+  "style": "dist/fix-cjk-linebreak.css",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haixing-hu/fix-cjk-linebreak.git"
+  },
+  "keywords": [
+    "CJK",
+    "space",
+    "linebreak",
+    "typography"
+  ],
+  "author": "Haixing Hu <starfish.hu@gmail.com>",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/haixing-hu/fix-cjk-linebreak/issues"
+  },
+  "homepage": "https://github.com/haixing-hu/fix-cjk-linebreak#readme",
+  "dependencies": {
+    "xregexp": "^5.1.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^4.9.6"
+  },
+  "files": [
+    "dist",
+    "src",
+    "LICENSE",
+    "README.md"
+  ]
+} 

@@ -3,13 +3,10 @@
   <head>
     <meta charset="utf-8"/>
     <title>测试HTML中简体中文换行导致的额外空格</title>
-    <script type="text/javascript" src="../bower_components/domready/ready.min.js"></script>
-    <script type="text/javascript" src="../bower_components/xregexp/min/xregexp-all-min.js"></script>
-    <script type="text/javascript" src="../fix-cjk-linebreak.js"></script>
-    <script type="text/javascript">
-    domready(function() {
-       fix_cjk_linebreak(document.getElementsByTagName("body")[0]);
-    });
+    <script src="../dist/fix-cjk-linebreak.umd.min.js"></script>
+    <script>
+      // 使用自动修复功能
+      fixCJKLinebreak.autoFix();
     </script>
   </head>
   <body>

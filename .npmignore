@@ -1,0 +1,15 @@
+# 源码控制和配置
+.git
+.gitignore
+.vscode
+.idea
+.DS_Store
+
+# 测试文件夹
+test/
+
+# 构建文件
+rollup.config.mjs
+
+# 日志文件
+*.log 
